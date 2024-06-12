@@ -36,4 +36,9 @@ class JamieFiy():
 
 
 jf = JamieFiy()
-print(jf.artists.get('53RsXctnNmj9oKXvcbvzI2'))
+
+
+alexisonfire=jf.artists.get('53RsXctnNmj9oKXvcbvzI2')
+print(alexisonfire)
+artist_random= jf.artists.get('4BFMTELQyWJU1SwqcXMBm3')
+print(artist_random)
