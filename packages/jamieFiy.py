@@ -1,5 +1,6 @@
 import requests
 from artists import Artists
+from albums import Albums  
 
 
 class JamieFiy():
@@ -20,25 +21,30 @@ class JamieFiy():
         }
         self.token = self.get_token()
         self.artists = Artists(self)
-
+        self.albums = Albums(self)
+    
     def get_token(self):
         """get an access token for spotify api
 
         :return:
         """
-        request = requests.post(
-            url=self.token_url,
-            headers=self.token_headers,
-            data=self.token_data
-        )
+        request = requests.post(url=self.token_url,
+                                headers=self.token_headers,
+                                data=self.token_data)
         return request.json()['access_token']
-
 
 
 jf = JamieFiy()
 
+alexisonfire_artist_id = "53RsXctnNmj9oKXvcbvzI2"
+ffaf_artist_id = '4AbDWrmJPSOeIbT2Ou60ik'
+# alexisonfire = jf.artists.get(alexisonfire_artist_id)
+# alexisonfire_albums = jf.artists.get_albums(alexisonfire_artist_id)
+# print(alexisonfire_albums['items'][0])
+# alexisonfire_top_tracks = jf.artists.get_top_tracks(alexisonfire_artist_id)
+# print(alexisonfire_top_tracks['tracks'][1]['name'])
+# alexisonfire_related_artists = jf.artists.get_related_artists(alexisonfire_artist_id)
+# print(alexisonfire_related_artists)
 
-alexisonfire=jf.artists.get('53RsXctnNmj9oKXvcbvzI2')
-print(alexisonfire)
-artist_random= jf.artists.get('4BFMTELQyWJU1SwqcXMBm3')
-print(artist_random)
+new_releases = jf.albums.get_new_releases(limit=49)
+print(new_releases['albums']['items'])
