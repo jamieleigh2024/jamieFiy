@@ -1,4 +1,6 @@
 import requests
+import os
+
 from artists import Artists
 from albums import Albums
 from playlists import Playlists
@@ -8,7 +10,7 @@ class JamieFiy():
 
     def __init__(self):
         self.client_id = "86d2d7b67f5047f4872829fdad863850"
-        self.client_secret = "59e48f28fa254ed09d628e193a76a448"
+        self.client_secret = os.environ['SEAN_SPOTIFY_API_KEY']
         self.app_name = "testapp-1"
         self.token_url = "https://accounts.spotify.com/api/token"
         self.api_url = "https://api.spotify.com/v1"
@@ -41,8 +43,8 @@ jf = JamieFiy()
 
 alexisonfire_artist_id = "53RsXctnNmj9oKXvcbvzI2"
 ffaf_artist_id = '4AbDWrmJPSOeIbT2Ou60ik'
-# alexisonfire = jf.artists.get(alexisonfire_artist_id)
-#  print(alexisonfire)
+alexisonfire = jf.artists.get(alexisonfire_artist_id)
+print(alexisonfire)
 
 # alexisonfire_albums = jf.artists.get_albums(alexisonfire_artist_id)
 # print(alexisonfire_albums['items'][0])
